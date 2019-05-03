@@ -8,10 +8,13 @@ import { AppUser } from '../models/app-user';
 })
 export class UserService {
 
-  constructor(private db:AngularFireDatabase) { }
+  constructor(private db:AngularFireDatabase) {
+
+   }
  
   //function for create or update user in database
-  saveuserfunc(user:firebase.User){
+  saveuserfunc(user:firebase.User)
+  {
     this.db.object('/users/' +user.uid).update({
       name:user.displayName,
       email:user.email,
@@ -20,8 +23,9 @@ export class UserService {
     });
   }
  
-get(uid:string):AngularFireObject<AppUser>{
-  return this.db.object('/users/' + uid);
-} 
+  get(uid:string):AngularFireObject<AppUser>
+  {
+    return this.db.object('/users/' + uid);
+  } 
 
 }

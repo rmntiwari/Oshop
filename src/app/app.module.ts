@@ -32,6 +32,8 @@ import { AuthService } from './services/auth.service';
 import { AuthGuard } from './auth.guard';
 import { UserService } from './services/user.service';
 import { AdminAuthGuard } from './admin-auth.guard';
+import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { CategoryService } from './services/category.service';
 
 const routes:Routes = [
 {path:'', redirectTo:'home',pathMatch:'full'},
@@ -45,7 +47,10 @@ const routes:Routes = [
 {path:'my/orders', component:MyOrdersComponent},
  
 {path:'admin/products', component:AdminProductsComponent, canActivate:[AuthGuard,AdminAuthGuard]},
+{path:'admin/products/new', component:ProductFormComponent, canActivate:[AuthGuard,AdminAuthGuard]},
+
 {path:'admin/orders', component:AdminOrderComponent, canActivate:[AuthGuard,AdminAuthGuard]},
+
  
 { path: '**', component:PagenotfoundComponent }
 
@@ -64,8 +69,9 @@ const routes:Routes = [
     MyOrdersComponent,
     PagenotfoundComponent,     
     AdminProductsComponent,
-    AdminOrderComponent,
-    LoginComponent 
+    AdminOrderComponent,     
+    LoginComponent,
+    ProductFormComponent 
   ],
   imports: [
     BrowserModule,
@@ -77,7 +83,7 @@ const routes:Routes = [
     NgbModule
     
   ],
-  providers: [ AuthService,AuthGuard,UserService,AdminAuthGuard],
+  providers: [ AuthService,AuthGuard,UserService,AdminAuthGuard,CategoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

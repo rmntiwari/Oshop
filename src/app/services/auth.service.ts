@@ -32,7 +32,6 @@ export class AuthService {
   {
     let returnUrl =  this.activatedroute.snapshot.queryParamMap.get('returnUrl') || '/';
     localStorage.setItem('returnUrl', returnUrl);
-
     this.afauth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
   }
 
@@ -44,19 +43,18 @@ export class AuthService {
     return this.user$;
   }
 
+  //getter
   get appUser$(): Observable<AppUser> {
-      return this.user$
-      .pipe(
-        switchMap(user =>
-            {
-            if (user)
-              return this.userService.get(user.uid).valueChanges();
-            else
-              return of(null);
-            }
-        )
-      );
-    }
+    return this.user$.pipe(
+      switchMap(user =>  {
+          if (user)
+            return this.userService.get(user.uid).valueChanges();
+          else
+            return of(null);
+        }
+      )
+    );
+  }
 
 
 }
