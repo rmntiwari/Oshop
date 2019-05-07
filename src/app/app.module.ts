@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+ 
 
 
 //default app routing module
@@ -34,6 +35,9 @@ import { UserService } from './services/user.service';
 import { AdminAuthGuard } from './admin-auth.guard';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { CategoryService } from './services/category.service';
+import { FormsModule } from '@angular/forms';
+import { ProductService } from './services/product.service';
+import { CustomFormsModule } from 'ng2-validation'; // for validation
 
 const routes:Routes = [
 {path:'', redirectTo:'home',pathMatch:'full'},
@@ -49,9 +53,7 @@ const routes:Routes = [
 {path:'admin/products', component:AdminProductsComponent, canActivate:[AuthGuard,AdminAuthGuard]},
 {path:'admin/products/new', component:ProductFormComponent, canActivate:[AuthGuard,AdminAuthGuard]},
 
-{path:'admin/orders', component:AdminOrderComponent, canActivate:[AuthGuard,AdminAuthGuard]},
-
- 
+{path:'admin/orders', component:AdminOrderComponent, canActivate:[AuthGuard,AdminAuthGuard]}, 
 { path: '**', component:PagenotfoundComponent }
 
 ];
@@ -75,15 +77,17 @@ const routes:Routes = [
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     RouterModule.forRoot(routes),
-    NgbModule
+    NgbModule,
+    CustomFormsModule //for validation
     
   ],
-  providers: [ AuthService,AuthGuard,UserService,AdminAuthGuard,CategoryService],
+  providers: [ AuthService,AuthGuard,UserService,AdminAuthGuard,CategoryService, ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

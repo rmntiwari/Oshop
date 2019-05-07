@@ -1,29 +1,67 @@
-<form>
-  <div class="form-group">
-    <label for="title">Title</label>
-    <input type="text" name="title" id="title" class="form-control">
-  </div> 
+<div class="row">
 
-  <div class="form-group">
-    <label for="price">Price</label>
-    <div class="input-group mb-3">    
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="basic-addon1">$</span>
+  <div class="col-md-6">
+    <form #f= "ngForm" (ngSubmit)="saveproduct(f.value)" >
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input #title = "ngModel" ngModel   type="text" name="title" id="title" class="form-control"  required>
+      <div class="alert alert-danger" *ngIf="title.touched && title.invalid">This is required field</div>
+    </div> 
+
+    <div class="form-group">
+      <label for="price">Price</label>
+      <div class="input-group mb-3">    
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">$</span>
+          </div>
+        <input required #price ="ngModel" ngModel  [min]="0" type="text" name="price" id="price" class="form-control" placeholder="0.00" aria-label="price" aria-describedby="basic-addon1">
+      
+      </div>
+      <div  class ="alert alert-danger" *ngIf="price.touched && price.invalid">
+        <div *ngIf="price.errors.required">This is required field</div>
+        <div *ngIf="price.errors.min"> minimum value must be 0 </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="category">Category</label>
+      <select required #category="ngModel" ngModel  name="category" id="category" class="form-control">
+        <option val="">--</option>  
+        <option *ngFor="let cat of categories$ | async" [value]="cat.name">{{cat.name}}</option> 
+      </select>
+      <div class="alert alert-danger" *ngIf="category.touched && category.invalid">This is required field</div>
+    </div>
+
+    <div class="form-group">
+        <label for="Image">Image </label>
+        <input required  #Image = "ngModel" ngModel type="text" name="Image" id="Image" class="form-control" url />
+        <div class="alert  alert-danger" *ngIf="Image.touched && Image.invalid" >
+        
+        <div *ngIf="Image.errors.required">This is required field</div>
+        <div *ngIf="Image.errors.url">Invalid url (http://xyz.com)</div>
+        
         </div>
-        <input type="text" name="price" id="price" class="form-control" placeholder="0.00" aria-label="price" aria-describedby="basic-addon1">
-    </div>
+      </div>
+    
+    <button class="btn btn-primary">Save</button>
+  </form>  
   </div>
 
-  <div class="form-group">
-    <label for="category">Category</label>
-    <select name="category" id="category" class="form-control">
-    <option val="">--</option>  
-    </select>
+
+  <div class="col-md-6">
+
+    <div class="card">
+     <img class="card-img-top" [src]="Image.value" style="width:100%;" />
+      <div class="card-header"></div>     
+      <div class="card-body">  
+      <p>{{title.value}}</p>    
+      <p>{{price.value | currency:'USD':true}}</p>
+       <a href="#" class="btn btn-primary">Go</a>
+      </div> 
+     
+    </div>  
   </div>
 
-  <div class="form-group">
-      <label for="Image">Image </label>
-      <input type="text" name="Image" id="Image" class="form-control">
-    </div>
-  <button class="btn btn-primary">Save</button>
-</form>
+</div>
+
+

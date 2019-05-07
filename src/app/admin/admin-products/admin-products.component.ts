@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductService } from 'src/app/services/product.service';
+import { NullViewportScroller } from '@angular/common/src/viewport_scroller';
+ 
 
 @Component({
   selector: 'app-admin-products',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminProductsComponent implements OnInit {
 
-  constructor() { }
+  productlist$ ;
+
+
+  constructor(private productservice:ProductService) {
+   
+    this.productlist$ =  this.productservice.getAll();  
+    console.log(this.productlist$);
+     
+   }
 
   ngOnInit() {
+   
   }
+
+  
 
 }

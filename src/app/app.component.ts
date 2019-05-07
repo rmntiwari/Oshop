@@ -18,8 +18,8 @@ export class AppComponent {
     auth.user$.subscribe(user=>{    
       if(user){
       
-        console.log(user);
-        console.log(user.displayName);
+       // console.log(user);
+       // console.log(user.displayName);
         
         
 
