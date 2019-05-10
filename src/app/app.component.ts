@@ -15,20 +15,17 @@ export class AppComponent {
         
  constructor(private auth:AuthService, private router:Router, userservice:UserService)
  {
-    auth.user$.subscribe(user=>{    
-      if(user){
+    auth.user$.subscribe(user=>{  
+      if(!user) return;
       
-       // console.log(user);
-       // console.log(user.displayName);
-        
-        
-
-        //calling function of user service to create a user 
-        userservice.saveuserfunc(user);
-
-        //return to appropriate user on login success
-        let returnUrl = localStorage.getItem('returnUrl');
-        router.navigateByUrl(returnUrl);
+      if(user){       
+        userservice.saveuserfunc(user); //calling function of user service to create a user        
+        let returnUrl = localStorage.getItem('returnUrl'); //return to appropriate user on login success
+      
+        if(returnUrl){
+          localStorage.removeItem('returnUrl');
+          router.navigateByUrl(returnUrl);
+        }     
         
       }
       

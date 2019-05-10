@@ -1,7 +1,35 @@
-
+<p></p>
 <p><a routerLink="/admin/products/new" class="btn btn-primary">Add new product</a></p>
-  
- <table class="table">
+<p><input #query (keyup)="searchproduct(query.value)"  type="text" class="form-control" placeholder="search product..."></p>
+
+<data-table id="my-table" [items]= "items" [itemCount]= "itemCount"  (reload)="relaodItems($event)" >
+
+
+    <!--<data-table-column [property]="''" [header]="'Sno'" [sortable]="'ture'" [resizable]="'true'">
+
+    </data-table-column>-->
+    
+    <data-table-column [property]="'title'" [header]="'Title'" [sortable]="'ture'" [resizable]="'true'">
+ 
+    </data-table-column>
+
+    <data-table-column [property]="'price'" [header]="'Price'" [sortable]="'ture'" [resizable]="'true'">
+        <ng-template #dataTableCell let-item ="item"> {{item.price | currency:'USD':'$'}}</ng-template>  
+    </data-table-column>
+
+    <data-table-column [property]="'$key'"   [header]="'Action'">
+            <ng-template #dataTableCell let-item ="item"> <a [routerLink]="['/admin/products/',item.key]">Edit</a></ng-template> 
+    </data-table-column>
+
+
+
+
+</data-table>
+
+
+
+
+ <!--<table class="table">
      <thead>
          <tr>
              <th>Title</th>
@@ -11,12 +39,11 @@
      </thead>
 
      <tbody>
-         <tr *ngFor="let p of productlist$ | async">
+         <tr *ngFor="let p of filtered_product">
              <th>{{p.title}}</th>
              <th>{{p.price}}</th>
-             <th><a [routerLink]="['/admin/products/']">Edit</a></th>
+             <th><a [routerLink]="['/admin/products/',p.key]">Edit</a></th>
          </tr>
-
      </tbody>
-
  </table>
+-->

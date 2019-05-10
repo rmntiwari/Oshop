@@ -38,6 +38,7 @@ import { CategoryService } from './services/category.service';
 import { FormsModule } from '@angular/forms';
 import { ProductService } from './services/product.service';
 import { CustomFormsModule } from 'ng2-validation'; // for validation
+import { DataTableModule } from 'angular5-data-table';
 
 const routes:Routes = [
 {path:'', redirectTo:'home',pathMatch:'full'},
@@ -50,8 +51,11 @@ const routes:Routes = [
 {path:'order-success', component:OrderSuccessComponent,canActivate:[AuthGuard]},
 {path:'my/orders', component:MyOrdersComponent},
  
-{path:'admin/products', component:AdminProductsComponent, canActivate:[AuthGuard,AdminAuthGuard]},
-{path:'admin/products/new', component:ProductFormComponent, canActivate:[AuthGuard,AdminAuthGuard]},
+//routing from more specific to more generalized
+{path:'admin/products/new', component:ProductFormComponent, canActivate:[AuthGuard, AdminAuthGuard] },
+{path:'admin/products/:id', component:ProductFormComponent, canActivate:[AuthGuard, AdminAuthGuard] },
+{path:'admin/products', component:AdminProductsComponent, canActivate:[AuthGuard, AdminAuthGuard] },
+
 
 {path:'admin/orders', component:AdminOrderComponent, canActivate:[AuthGuard,AdminAuthGuard]}, 
 { path: '**', component:PagenotfoundComponent }
@@ -84,7 +88,10 @@ const routes:Routes = [
     AngularFireAuthModule,
     RouterModule.forRoot(routes),
     NgbModule,
-    CustomFormsModule //for validation
+    CustomFormsModule, //for validation
+    DataTableModule
+   
+   
     
   ],
   providers: [ AuthService,AuthGuard,UserService,AdminAuthGuard,CategoryService, ProductService],

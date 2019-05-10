@@ -1,10 +1,7 @@
-import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { Injectable } from '@angular/core'; 
 import { AngularFireDatabase } from '@angular/fire/database';
-import * as firebase from 'firebase/app';
-import { tap, map, switchMap, first } from 'rxjs/operators';
-import { TouchSequence } from 'selenium-webdriver';
-import { of, observable } from 'rxjs';
+ 
+
 
 @Injectable({
   providedIn: 'root'
@@ -19,34 +16,27 @@ export class ProductService {
    return this.db.list('/products').push(productinfo);     
   }
 
-  getAllProducts(){
-    return this.db.list('/products').valueChanges();
+   getAll() {
+    return this.db.list('/products').snapshotChanges();
+    
+  } 
+
+  getproductbyid(productid){
+    
+   //both option will work [snapshotChanges is used when you need key of document too with all data ]
+    return this.db.object('/products/'+ productid).snapshotChanges();
+    //return this.db.object('/products/'+ productid).valueChanges();
+   
   }
 
- /*  getAll() {
-    return this.db.list('/products').snapshotChanges()
-      .subscribe(actions => {
-            actions.forEach(action => {
-            const key = action.key;
-            const data = action.payload.val();
-            return { key, ...data };
-            });
-      });
-  } */
+  updateproduct(id, product){ // hrere product object should not have id coz produt id is unique and it will not update . it can cause runtime error dring update'
+   return this.db.object('/products/'+id).update(product);
+  }
 
-  getAll(): Observable<any> {
-    return this.db.list<any>('/products')
-        .snapshotChanges()
-        .pipe(
-            map(changes =>
-                changes.map(c => {
-                    const data = c.payload.val() as Product;
-                    const id = c.payload.key;
-                    return { id, ...data };
-                })
-            )
-        );
-}
+  deleteproduct(id){
+    return this.db.object('/products/'+id).remove();
+  }
+ 
 
 
 
