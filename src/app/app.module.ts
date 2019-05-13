@@ -39,10 +39,13 @@ import { FormsModule } from '@angular/forms';
 import { ProductService } from './services/product.service';
 import { CustomFormsModule } from 'ng2-validation'; // for validation
 import { DataTableModule } from 'angular5-data-table';
+import { ProductFilterComponent } from './products/product-filter/product-filter.component';
+import { ProductCardComponent } from './product-card/product-card.component';
 
 const routes:Routes = [
 {path:'', redirectTo:'home',pathMatch:'full'},
-{path:'home', component:HomeComponent},
+//{path:'home', component:HomeComponent},
+{path:'home', component:ProductsComponent},
 {path:'login', component:LoginComponent},
 
 {path:'product', component:ProductsComponent},
@@ -77,7 +80,9 @@ const routes:Routes = [
     AdminProductsComponent,
     AdminOrderComponent,     
     LoginComponent,
-    ProductFormComponent 
+    ProductFormComponent,
+    ProductFilterComponent,
+    ProductCardComponent 
   ],
   imports: [
     BrowserModule,
