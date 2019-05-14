@@ -41,6 +41,7 @@ import { CustomFormsModule } from 'ng2-validation'; // for validation
 import { DataTableModule } from 'angular5-data-table';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 import { ProductCardComponent } from './product-card/product-card.component';
+import { ShopingCartService } from './services/shoping-cart.service';
 
 const routes:Routes = [
 {path:'', redirectTo:'home',pathMatch:'full'},
@@ -99,7 +100,7 @@ const routes:Routes = [
    
     
   ],
-  providers: [ AuthService,AuthGuard,UserService,AdminAuthGuard,CategoryService, ProductService],
+  providers: [ AuthService,AuthGuard,UserService,AdminAuthGuard,CategoryService, ProductService,ShopingCartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
