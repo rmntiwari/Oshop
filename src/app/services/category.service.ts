@@ -13,8 +13,7 @@ export class CategoryService {
 
    }
 
-   getAll(){  
-     console.log(this.db.list('categories/').valueChanges());
+   getAll(){       
       return this.db.list('categories/').valueChanges();
    }
    
