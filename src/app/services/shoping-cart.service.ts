@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
 import { Product } from '../models/products';
-import { take } from 'rxjs/operators';
-import { shoppingCartItem } from '../models/shoppint-cart-items';
-import { shoppingCart } from '../models/shopping-cart';
+import { take, map  } from 'rxjs/operators';
+import { ShoppingCart } from '../models/shopping-cart';
+ 
+import { Observable,pipe} from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShopingCartService {
+
+  cartItemArray = [];
+  shoppingCartObject:any;
 
   constructor(private db: AngularFireDatabase) {
 
@@ -22,18 +27,23 @@ export class ShopingCartService {
 
   }
 
-
-/* 
-  async getCart():Promise<AngularFireObject<shoppingCart>>{
-    let cartid = await this.getOrCreateCart();
-    return this.db.object('/shopping-carts/' + cartid);
-  } */
  
- async getCart():Promise<AngularFireObject<shoppingCart>>{
+  async getCart1():Promise<AngularFireObject<ShoppingCart>>{
     let cartid = await this.getOrCreateCart();
     return this.db.object('/shopping-carts/' + cartid);
+  } 
+ 
+  
+
+  async getCart(): Promise<Observable<ShoppingCart>> {
+    let cartId = await this.getOrCreateCart();
+    return this.db.object('/shopping-carts/' + cartId).snapshotChanges().pipe(map(x => { 
+      console.log("snapshot payload.val =", x.payload.val());     
+      return new ShoppingCart(x.payload.val());
+    }));
   }
 
+ 
 
 
   private async getOrCreateCart(): Promise<string> {
@@ -53,7 +63,7 @@ export class ShopingCartService {
   to write our code more linear we are going to use async and await to make call sync instead to promise[.then]   
   */
   async addToCart(product) {
-
+    
     let cartid = await this.getOrCreateCart();
     var collectionObj = this.getItem(cartid, product.key); 
     var items$ = this.getItem(cartid, product.key).valueChanges();
@@ -69,6 +79,10 @@ export class ShopingCartService {
     });
 
   }// end of addtocart
+
+
+
+
 
   async removeFromCart(product) {
 

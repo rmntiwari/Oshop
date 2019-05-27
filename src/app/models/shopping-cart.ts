@@ -1,19 +1,43 @@
-import { shoppingCartItem } from './shoppint-cart-items';
+import { ShoppingCartItem } from './shoppint-cart-items';
 
-export class shoppingCart{
-   
-    //items:shoppingCartItem[];
-    constructor(public items:shoppingCartItem[]){
-        
+export class ShoppingCart {
+    items: ShoppingCartItem[] = [];
+
+    constructor(private itemsMap) {
+        this.itemsMap = itemsMap || {};
+
+         if (itemsMap) {
+            for (let productId in itemsMap.items) {
+                if (itemsMap.items.hasOwnProperty(productId)) {
+                    let item = itemsMap.items[productId];
+                    this.items.push(new ShoppingCartItem({ ...item, key: productId }));
+                }
+            }
+        } 
     }
 
-    get totalItemCount(){
-        let count = 0 ;
-       for(let pid in this.items){
-           count += this.items[pid].quantity;
-       }
-       return count;
+    getQuantity(product) {
+        if (this.itemsMap.items) {
+            let item = this.itemsMap.items[product.key];
+            return item ? item.quantity : 0;
+        }
+        return 0;
+
     }
 
+    get totalItemsCount() {
+        let count = 0;
 
+        for (let productId in this.itemsMap.items)
+            count += this.itemsMap.items[productId].quantity;
+        return count;
+    }
+
+    get grandTotal() {
+        let sum = 0;
+
+        for (let productId in this.itemsMap.items)
+            sum += (this.itemsMap.items[productId].quantity * this.itemsMap.items[productId].price);
+        return sum;
+    }
 }
