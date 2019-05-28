@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
-import { Product } from '../models/products';
-import { take, map  } from 'rxjs/operators';
+import { take, map } from 'rxjs/operators';
 import { ShoppingCart } from '../models/shopping-cart';
- 
-import { Observable,pipe} from 'rxjs';
+import { Observable, pipe } from 'rxjs';
 
 
 @Injectable({
@@ -13,7 +11,7 @@ import { Observable,pipe} from 'rxjs';
 export class ShopingCartService {
 
   cartItemArray = [];
-  shoppingCartObject:any;
+  shoppingCartObject: any;
 
   constructor(private db: AngularFireDatabase) {
 
@@ -27,23 +25,19 @@ export class ShopingCartService {
 
   }
 
- 
-  async getCart1():Promise<AngularFireObject<ShoppingCart>>{
+  async getCart1(): Promise<AngularFireObject<ShoppingCart>> {
     let cartid = await this.getOrCreateCart();
     return this.db.object('/shopping-carts/' + cartid);
-  } 
- 
-  
-
-  async getCart(): Promise<Observable<ShoppingCart>> {
-    let cartId = await this.getOrCreateCart();
-    return this.db.object('/shopping-carts/' + cartId).snapshotChanges().pipe(map(x => { 
-      console.log("snapshot payload.val =", x.payload.val());     
-      return new ShoppingCart(x.payload.val());
-    }));
   }
 
- 
+  async getCart(): Promise<Observable<ShoppingCart>> {
+
+    let cartId = await this.getOrCreateCart();
+    return this.db.object('/shopping-carts/' + cartId).snapshotChanges().pipe(map(x => {
+      return new ShoppingCart(x.payload.val());
+    }));
+
+  }
 
 
   private async getOrCreateCart(): Promise<string> {
@@ -59,13 +53,12 @@ export class ShopingCartService {
   }
 
   /* here async added before function and await added before function call getorcreatecart() because we are not going to use .then  as getorcreatecart returns 
-  promise [promise need .then to handle result].
-  to write our code more linear we are going to use async and await to make call sync instead to promise[.then]   
+  promise [promise need .then to handle result]. to write our code more linear we are going to use async and await to make call sync instead to promise[.then]   
   */
   async addToCart(product) {
-    
+
     let cartid = await this.getOrCreateCart();
-    var collectionObj = this.getItem(cartid, product.key); 
+    var collectionObj = this.getItem(cartid, product.key);
     var items$ = this.getItem(cartid, product.key).valueChanges();
     let q = 0;
     items$.pipe(take(1)).subscribe((item: any) => {
@@ -81,13 +74,12 @@ export class ShopingCartService {
   }// end of addtocart
 
 
-
-
-
   async removeFromCart(product) {
 
     let cartid = await this.getOrCreateCart();
-    var collectionObj = this.getItem(cartid, product.key); 
+
+    var collectionObj = this.getItem(cartid, product.key);
+
     var items$ = this.getItem(cartid, product.key).valueChanges();
     let q = 0;
     items$.pipe(take(1)).subscribe((item: any) => {
@@ -106,6 +98,7 @@ export class ShopingCartService {
   getItems() {
     return this.db.object('/shopping-cart/' + this.getOrCreateCart);
   }
+
 
 
 } // end of class

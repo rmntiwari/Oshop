@@ -42,6 +42,7 @@ import { DataTableModule } from 'angular5-data-table';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { ShopingCartService } from './services/shoping-cart.service';
+import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 
 const routes:Routes = [
 {path:'', redirectTo:'home',pathMatch:'full'},
@@ -83,7 +84,8 @@ const routes:Routes = [
     LoginComponent,
     ProductFormComponent,
     ProductFilterComponent,
-    ProductCardComponent 
+    ProductCardComponent,
+    ProductQuantityComponent 
   ],
   imports: [
     BrowserModule,

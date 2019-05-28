@@ -27,17 +27,19 @@ export class ShoppingCart {
 
     get totalItemsCount() {
         let count = 0;
-
         for (let productId in this.itemsMap.items)
             count += this.itemsMap.items[productId].quantity;
         return count;
     }
 
     get grandTotal() {
+       // return 10;
         let sum = 0;
 
         for (let productId in this.itemsMap.items)
-            sum += (this.itemsMap.items[productId].quantity * this.itemsMap.items[productId].price);
+            { var pid =  productId;        
+            sum += (this.itemsMap.items[pid].quantity * this.itemsMap.items[pid].product.price);
+            }
         return sum;
     }
 }

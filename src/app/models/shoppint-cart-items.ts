@@ -12,4 +12,6 @@ export class ShoppingCartItem {
     get subTotalOfItem() {
         return this.price * this.quantity;
     }
+
+     
 }

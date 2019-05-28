@@ -30,8 +30,7 @@ export class BsNavbarComponent  implements OnInit {
     x.subscribe(count => {
       
     this.shoppingCartItemCount = 0;
-    if (count.items)
-        console.log("your items ", count.items)
+    if (count.items)        
       this.shoppingCartItemCount = count.totalItemsCount;
        
     });
