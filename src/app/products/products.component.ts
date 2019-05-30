@@ -4,7 +4,8 @@ import { Product } from '../models/product';
 import { ShopingCartService } from '../services/shoping-cart.service';
 import { ActivatedRoute } from '@angular/router';
 import {switchMap} from 'rxjs/operators';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
+import { ShoppingCart } from '../models/shopping-cart';
 
 @Component({
   selector: 'app-products',
@@ -19,8 +20,9 @@ export class ProductsComponent implements OnInit,OnDestroy {
   categories:any;
   category:string; // parameter category value
   subscription:Subscription;
-  cart:any ;
+  cart$:Observable<ShoppingCart>;
   carttemp:any;
+  cartitemcount:number;
 
   constructor(private products:ProductService, private route:ActivatedRoute, private cartservice:ShopingCartService )
   {        
@@ -42,15 +44,11 @@ export class ProductsComponent implements OnInit,OnDestroy {
   }// end constructor
    
   async ngOnInit() {
-    await this.cartservice.getCart1();
-    this.subscription = (await this.cartservice.getCart1()).valueChanges()
-      .subscribe(y => {        
-        this.cart = y;
-      });
+     this.cart$ = await this.cartservice.getCart();    
   }
 
   ngOnDestroy(){
-    this.subscription.unsubscribe();
+   // this.subscription.unsubscribe();
   }
 
 

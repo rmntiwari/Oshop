@@ -38,8 +38,10 @@ export class ShoppingCart {
 
         for (let productId in this.itemsMap.items)
             { var pid =  productId;        
-            sum += (this.itemsMap.items[pid].quantity * this.itemsMap.items[pid].product.price);
+             sum += (this.itemsMap.items[pid].quantity * this.itemsMap.items[pid].product.price);
             }
         return sum;
     }
+
+    
 }
