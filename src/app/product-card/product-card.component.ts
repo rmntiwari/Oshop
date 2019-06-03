@@ -20,10 +20,11 @@ export class ProductCardComponent {
   constructor(private cartservice:ShopingCartService) { 
      console.log(this.prodIndexId);
   }    
- /*  addToCart(product:Product)  {
+ addToCart(product:Product)  {
     this.cartservice.addToCart(product);   
   }//end of addToCart
 
+   /* 
   removeFromCart(product:Product){
     this.cartservice.removeFromCart(product)
   }
