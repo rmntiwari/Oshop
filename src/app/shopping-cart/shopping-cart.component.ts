@@ -20,21 +20,15 @@ export class ShoppingCartComponent implements OnInit {
 
  async ngOnInit() {
   
-  this.shoppingCartService.getCart().then(x=>{    
-
+  this.shoppingCartService.getCart().then(x=>{ 
     this.cart$ = x;
-    x.subscribe(count=>{
-           
+    x.subscribe(count=>{            
       if(count.items){
         this.cartitemcount = count.totalItemsCount;         
       }
     })
     console.log("From shopping cart component", this.cart$);
-   }) ;
-   
-   
-  
-
+   }) ;  
   }
 
   removefromcart(){

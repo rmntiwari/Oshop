@@ -17,7 +17,7 @@ export class ProductQuantityComponent {
   @Input('index') prodIndexId;
    
   
-  constructor(private cartservice:ShopingCartService) { }  
+  constructor(private cartservice:ShopingCartService) { }   
 /* 
   addToCart(product:Product)  {
     this.cartservice.addToCart(product);   
@@ -26,7 +26,9 @@ export class ProductQuantityComponent {
   removeFromCart(product:Product){
     this.cartservice.removeFromCart(product)
   }
- 
+  addToCart(product:Product){
+    this.cartservice.addToCart(product);
+  }
   
    
 }

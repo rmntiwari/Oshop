@@ -16,13 +16,12 @@ export class ShoppingCart {
         } 
     }
 
-    getQuantity(product) {
+    getQuantity(product) {       
         if (this.itemsMap.items) {
             let item = this.itemsMap.items[product.key];
             return item ? item.quantity : 0;
         }
         return 0;
-
     }
 
     get totalItemsCount() {
