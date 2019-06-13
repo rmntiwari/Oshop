@@ -6,48 +6,29 @@
 
 <div class="row">
 
-  <div class="col-3"> 
-    <!-- MTO->PRODUCT-FILTER COMPONENT <div class="list-group">
-        <a class="list-group-item list-group-item-action" routerLink="/" [class.active] = "!category" >
-         <strong> All categories </strong>
-        </a>
-      <a class="list-group-item list-group-item-action" *ngFor="let cat of categories"  routerLink="/"  [queryParams] ="{category:cat.name}" [class.active]="category === cat.name" >
-        {{cat.name}}
-      </a>
-    </div> -->
+  <div class="col-3"> <!-- catetory display area -->    
     <app-product-filter [category] = "category"></app-product-filter>
   </div>
 
- 
-
   <div class="col"> <!-- product display area -->
-  <div class="row">
+  <div class="row" *ngIf="cart$ | async as cart">
+  
+  
      <ng-container *ngFor="let product of filteredProduct; let i = index">
 
-        <div class="col prod">
+        <div class="col prod">          
 
-          
-          <!--MTO product-card component ----------<div class="card  " style="width: 16rem;">
-            <img class="card-img-top" [src]="product.Image" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">{{product.title}}</h5>
-              <p class="card-text">{{product.price | currency:'USD':'$'}}</p>
-            </div>
-            <div class="card-body">
-              <a href="#" class="btn btn-primary">Add to cart</a>
-
-            </div>
-          </div> -->
-
-          <product-card [product]="product"></product-card>
-
-
+          <product-card [product]="product" [shopping-cart]="cart" [index]="i"  ></product-card>
 
         </div>
         <div *ngIf="(i+1)%2 === 0" class="w-100"></div>
 
       </ng-container>
+	  
+	  
+	  
     </div> 
-  </div>
-
+  </div>  
+   
+<!--<pre>{{cart | json}}</pre>-->
 </div>

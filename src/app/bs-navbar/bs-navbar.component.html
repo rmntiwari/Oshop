@@ -9,7 +9,13 @@
     <ul class="navbar-nav mr-auto">
        
       <li class="nav-item">
-        <a class="nav-link"  routerLink="shopping-cart">Shopping Cart</a>
+        <a class="nav-link"  routerLink="shopping-cart">
+         
+          Shopping Cart
+          <!--<span class="badge badge-warning">{{shoppintCartItemCount}}</span>-->
+          <span class="badge badge-warning" *ngIf="shoppingCartItemCount" >{{shoppingCartItemCount}}</span>
+
+        </a>
       </li>
      
       <ng-template #anonymususer>       

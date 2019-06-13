@@ -1,36 +1,34 @@
-import { Component,Input } from '@angular/core';
-import { Product } from '../models/products';
+import { Component,Input, OnInit } from '@angular/core';
 import { ShopingCartService } from '../services/shoping-cart.service';
+import { Product } from '../models/products';
 import { ShoppingCart } from '../models/shopping-cart';
- 
 
 @Component({
-  selector: 'product-card',
-  templateUrl: './product-card.component.html',
-  styleUrls: ['./product-card.component.css']
+  selector: 'product-quantity',
+  templateUrl: './product-quantity.component.html',
+  styleUrls: ['./product-quantity.component.css']
 })
-export class ProductCardComponent {
+export class ProductQuantityComponent {
 
+ 
   @Input('product') product:Product;
   @Input('show-actions') showActions =true; // it will override value if redirecting from admin manage product ; shoactions=false means card displaying on product form component
   @Input('shopping-cart') ShoppingCart;
   @Input('index') prodIndexId;
- 
+   
   
-  constructor(private cartservice:ShopingCartService) { 
-     console.log(this.prodIndexId);
-  }    
- addToCart(product:Product)  {
+  constructor(private cartservice:ShopingCartService) { }   
+/* 
+  addToCart(product:Product)  {
     this.cartservice.addToCart(product);   
-  }//end of addToCart
+  }//end of addToCart */
 
-   /* 
   removeFromCart(product:Product){
     this.cartservice.removeFromCart(product)
   }
-
-  getQuantity(){    
-    return 0;
-  } */
-
-}// end of class
+  addToCart(product:Product){
+    this.cartservice.addToCart(product);
+  }
+  
+   
+}
