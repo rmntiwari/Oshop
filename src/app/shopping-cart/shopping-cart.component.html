@@ -1,6 +1,7 @@
   <h3>Shopping cart</h3>
   <ng-container *ngIf="cart$ | async as cart" >
 <<<<<<< HEAD
+<<<<<<< HEAD
      <p> You have {{cart.totalItemsCount }}  items in your cart
         {{cart.items.length | json}}
         <button *ngIf = "cart.items.length" (click) = "clearCart()" class="btn btn-light btn-small">Clear Cart</button>
@@ -13,10 +14,16 @@
     <p>{{cart.items | json}}</p>
     <p>{{cart | json}}</p>
 >>>>>>> a9ab5e5e77924ae11a880cddc948ba9f3d76e4bd
+=======
+    <p> You have {{cart.totalItemsCount }}  items in your cart</p>
+    <p>{{cart.items | json}}</p>
+    <p>{{cart | json}}</p>
+>>>>>>> a9ab5e5e77924ae11a880cddc948ba9f3d76e4bd
     <table class="table">
       <thead>
         <tr>
           <th>Sno</th>         
+<<<<<<< HEAD
 <<<<<<< HEAD
           <th class="text-left">Image</th>
           <th class=" text-left">Product</th>
@@ -25,18 +32,24 @@
           <th class=" text-center">Total price</th>
           <th class="text-right">Action</th>
 =======
+=======
+>>>>>>> a9ab5e5e77924ae11a880cddc948ba9f3d76e4bd
           <th>Image</th>
           <th>Product</th>
           <th>quantity</th>
           <th>Unit price</th>
           <th>Total price</th>
           <th>Action</th>
+<<<<<<< HEAD
+>>>>>>> a9ab5e5e77924ae11a880cddc948ba9f3d76e4bd
+=======
 >>>>>>> a9ab5e5e77924ae11a880cddc948ba9f3d76e4bd
         </tr>
       </thead>
       <tbody>
         <tr *ngFor = "let item of cart.items;index as i">
           <td>{{i+1}} </td> 
+<<<<<<< HEAD
 <<<<<<< HEAD
           <td class="text-left">
           <!--  <img  class="thumbnail" [src] = "item.product.Image" />-->
@@ -55,6 +68,8 @@
         </tr>
         
 =======
+=======
+>>>>>>> a9ab5e5e77924ae11a880cddc948ba9f3d76e4bd
           <td><img width="50px" height="50px" src = "{{item.product.Image}}" /></td>
           <td>{{item.product.title}}</td>
 
@@ -70,6 +85,9 @@
           <td>{{item.quantity * item.product.price}}</td>
           <td> <button (click) = "removefromcart()" type="button" class="btn btn-link">Remove</button></td>
         </tr>
+<<<<<<< HEAD
+>>>>>>> a9ab5e5e77924ae11a880cddc948ba9f3d76e4bd
+=======
 >>>>>>> a9ab5e5e77924ae11a880cddc948ba9f3d76e4bd
       </tbody>
       <tfoot>
@@ -81,6 +99,7 @@
           <td></td>
           <th>Gtotal: {{cart.grandTotal | currency:'RS ':true}}</th>
 <<<<<<< HEAD
+<<<<<<< HEAD
           <td class="text-right"></td>
         </tr>
       </tfoot>
@@ -90,10 +109,15 @@
  <a *ngIf = "cart.items.length"  class ="btn btn-primary" routerLink="/checkout">Check Out</a>
     
 =======
+=======
+>>>>>>> a9ab5e5e77924ae11a880cddc948ba9f3d76e4bd
           <td></td>
         </tr>
       </tfoot>
     </table>
+<<<<<<< HEAD
+>>>>>>> a9ab5e5e77924ae11a880cddc948ba9f3d76e4bd
+=======
 >>>>>>> a9ab5e5e77924ae11a880cddc948ba9f3d76e4bd
   </ng-container> 
 

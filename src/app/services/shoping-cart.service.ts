@@ -47,6 +47,7 @@ export class ShopingCartService {
 
   cartItemArray = [];
   shoppingCartObject: any;
+<<<<<<< HEAD
 
   constructor(private db: AngularFireDatabase) {
 
@@ -70,11 +71,32 @@ export class ShopingCartService {
 =======
 
 >>>>>>> a9ab5e5e77924ae11a880cddc948ba9f3d76e4bd
+=======
+
+  constructor(private db: AngularFireDatabase) {
+
+  }
+
+  private create() {
+
+    return this.db.list('/shopping-carts').push({  // thisl will create/ push cart id in shopping-carts collection it returns promise to component
+      dateCreated: new Date().getTime()
+    });
+
+  }
+
+  async getCart1(): Promise<AngularFireObject<ShoppingCart>> {
+    let cartid = await this.getOrCreateCart();
+    return this.db.object('/shopping-carts/' + cartid);
+  }
+
+>>>>>>> a9ab5e5e77924ae11a880cddc948ba9f3d76e4bd
   async getCart(): Promise<Observable<ShoppingCart>> {
     let cartId = await this.getOrCreateCart();
     return this.db.object('/shopping-carts/' + cartId).snapshotChanges().pipe(map(x => {
       return new ShoppingCart(x.payload.val());
     }));
+<<<<<<< HEAD
 <<<<<<< HEAD
     
   }
@@ -119,10 +141,15 @@ export class ShopingCartService {
     }
   
 =======
+=======
+>>>>>>> a9ab5e5e77924ae11a880cddc948ba9f3d76e4bd
 
   }
 
 
+<<<<<<< HEAD
+>>>>>>> a9ab5e5e77924ae11a880cddc948ba9f3d76e4bd
+=======
 >>>>>>> a9ab5e5e77924ae11a880cddc948ba9f3d76e4bd
   private async getOrCreateCart(): Promise<string> {
     let cartId = localStorage.getItem('cartId');
@@ -132,6 +159,7 @@ export class ShopingCartService {
     return result.key;
   }
 <<<<<<< HEAD
+<<<<<<< HEAD
   
   private getItem(cartid, productid) {
     return this.db.object('/shopping-carts/' + cartid + '/items/' + productid);
@@ -139,6 +167,8 @@ export class ShopingCartService {
 
 
 =======
+=======
+>>>>>>> a9ab5e5e77924ae11a880cddc948ba9f3d76e4bd
 
   private getItem(cartid, productid) {
     return this.db.object('/shopping-carts/' + cartid + '/items/' + productid);
@@ -190,6 +220,9 @@ export class ShopingCartService {
   getItems() {
     return this.db.object('/shopping-cart/' + this.getOrCreateCart);
   }
+<<<<<<< HEAD
+>>>>>>> a9ab5e5e77924ae11a880cddc948ba9f3d76e4bd
+=======
 >>>>>>> a9ab5e5e77924ae11a880cddc948ba9f3d76e4bd
 
 

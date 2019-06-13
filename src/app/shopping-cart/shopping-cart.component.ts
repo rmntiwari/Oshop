@@ -36,9 +36,12 @@ export class ShoppingCartComponent implements OnInit {
   }
   
 <<<<<<< HEAD
+<<<<<<< HEAD
   clearCart(){
     this.shoppingCartService.clearCart();
   }
+=======
+>>>>>>> a9ab5e5e77924ae11a880cddc948ba9f3d76e4bd
 =======
 >>>>>>> a9ab5e5e77924ae11a880cddc948ba9f3d76e4bd
   
