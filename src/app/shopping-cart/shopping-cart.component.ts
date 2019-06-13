@@ -35,9 +35,12 @@ export class ShoppingCartComponent implements OnInit {
     alert('item removed');
   }
   
+<<<<<<< HEAD
   clearCart(){
     this.shoppingCartService.clearCart();
   }
+=======
+>>>>>>> a9ab5e5e77924ae11a880cddc948ba9f3d76e4bd
   
 
 
