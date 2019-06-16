@@ -10,17 +10,7 @@
     <button *ngIf="!ShoppingCart.getQuantity(product); else updateQuantity" (click)="addToCart(product)"
       class="btn btn-secondary btn-block">Add to cart</button>
 
-    <!--<ng-template #updateQuantity>
-      <div class="row no-gutters">
-        <div class="col-2 ">
-          <button (click)="removeFromCart(product)" class="btn btn-secondary btn-block">-</button>
-        </div>
-        <div class="col text-center"> {{ShoppingCart.getQuantity(product)}} in cart </div>
-        <div class="col-2">
-          <button (click)="addToCart(product)" class="btn btn-secondary btn-block">+</button>
-        </div>
-      </div>     
-    </ng-template>-->
+    
 
    <ng-template #updateQuantity>
       <product-quantity [product]="product" [shopping-cart]="ShoppingCart"></product-quantity>

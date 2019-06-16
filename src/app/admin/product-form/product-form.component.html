@@ -4,8 +4,7 @@
     <form #f= "ngForm" (ngSubmit)="saveproduct(f.value)" >
     <div class="form-group">
       <label for="title">Title</label>
-      <input #title = "ngModel" [(ngModel)]="product.title"  
-       type="text" name="title" id="title" class="form-control"  required>
+      <input #title = "ngModel" [(ngModel)]="product.title"   type="text" name="title" id="title" class="form-control"  required>
       <div class="alert alert-danger" *ngIf="title.touched && title.invalid">This is required field</div>
     </div> 
 
@@ -15,8 +14,7 @@
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">$</span>
           </div>
-        <input required #price ="ngModel" [(ngModel)]="product.price"  [min]="0" type="text"
-         name="price" id="price" class="form-control" placeholder="0.00" aria-label="price" aria-describedby="basic-addon1">
+        <input required #price ="ngModel" [(ngModel)]="product.price"  [min]="0" type="text" name="price" id="price" class="form-control" placeholder="0.00" aria-label="price" aria-describedby="basic-addon1">
       
       </div>
       <div  class ="alert alert-danger" *ngIf="price.touched && price.invalid">
@@ -36,8 +34,7 @@
 
     <div class="form-group">
         <label for="Image">Image </label>
-        <input required  #Image = "ngModel" [(ngModel)]="product.Image" type="text" name="Image"
-         id="Image" class="form-control" url   />
+        <input required  #Image = "ngModel" [(ngModel)]="product.Image" type="text" name="Image" id="Image" class="form-control" url   />
         <div class="alert  alert-danger" *ngIf="Image.touched && Image.invalid" >
         
         <div *ngIf="Image.errors.required">This is required field</div>

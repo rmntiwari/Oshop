@@ -1,3 +1,4 @@
+ 
 import { Component, OnInit } from '@angular/core';
 import { ShopingCartService } from '../services/shoping-cart.service';
 import { Observable } from 'rxjs';
@@ -35,15 +36,9 @@ export class ShoppingCartComponent implements OnInit {
     alert('item removed');
   }
   
-<<<<<<< HEAD
-<<<<<<< HEAD
   clearCart(){
-    this.shoppingCartService.clearCart();
+    this.shoppingCartService.clearCartitems();
   }
-=======
->>>>>>> a9ab5e5e77924ae11a880cddc948ba9f3d76e4bd
-=======
->>>>>>> a9ab5e5e77924ae11a880cddc948ba9f3d76e4bd
   
 
 
