@@ -1,3 +1,36 @@
-<p>
-  check-out works!
-</p>
+<div class="row"> 
+  <div class="col-md-6"> 
+<form #checkoutform = "ngForm" (ngSubmit)= "placeOrder(checkoutform.value)">
+  <div class="form-group">
+    <label for ="name">Name</label>
+    <input type="text" class="form-control" name="name"  #name = "ngModel"
+     [(ngModel)]= "shippingaddress.name" required placeholder="name" >
+    
+     <div class="alert alert-danger" *ngIf="name.invalid && name.touched" >
+       *This is required field
+      </div>      
+  </div>
+
+  <div class="form-group">
+    <label for="addressline1">Address</label>
+    <input type="text" class="form-control" #addressline1="ngModel"  name="addressline1" 
+    [(ngModel)]="shippingaddress.addressline1" required placeholder="Address Line1">
+    <p></p>
+    <input type="text" class="form-control" #addressline2="ngModel"  name="addressline2" 
+    [(ngModel)]="shippingaddress.addressline2" required placeholder="Address Line2">
+    <div class="alert alert-danger" *ngIf="addressline1.invalid && addressline1.touched">
+      *This is required field
+    </div> 
+  </div>
+
+  <div class="form-group">
+    <label for="city">City</label>
+    <input type="text" class="form-control" name="city" #city="ngModel" placeholder="city"
+     [(ngModel)]="shippingaddress.city" required >
+    <div class="alert alert-danger" *ngIf="city.invalid && city.touched">*This is required field</div>
+  </div>
+
+  <button class="btn btn-primary">Place Order</button>
+</form>
+</div>
+</div>

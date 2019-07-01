@@ -43,6 +43,7 @@ import { ProductFilterComponent } from './products/product-filter/product-filter
 import { ProductCardComponent } from './product-card/product-card.component';
 import { ShopingCartService } from './services/shoping-cart.service';
 import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
+import { OrderService } from './services/order.service';
 
 const routes:Routes = [
 {path:'', redirectTo:'home',pathMatch:'full'},
@@ -102,7 +103,8 @@ const routes:Routes = [
    
     
   ],
-  providers: [ AuthService,AuthGuard,UserService,AdminAuthGuard,CategoryService, ProductService,ShopingCartService],
+  providers: [ AuthService,AuthGuard,UserService,AdminAuthGuard,
+    CategoryService, ProductService,ShopingCartService,OrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
