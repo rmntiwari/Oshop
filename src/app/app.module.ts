@@ -44,10 +44,10 @@ import { ProductCardComponent } from './product-card/product-card.component';
 import { ShopingCartService } from './services/shoping-cart.service';
 import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 import { OrderService } from './services/order.service';
-<<<<<<< HEAD
+  
 import { ShoppingCartSummeryComponent } from './shopping-cart-summery/shopping-cart-summery.component';
-=======
->>>>>>> 32e8694d3bd304f15e29593fad6d0585df51fc5b
+  
+  
 
 const routes:Routes = [
 {path:'', redirectTo:'home',pathMatch:'full'},
