@@ -17,5 +17,13 @@ export class OrderService {
    this.ShopingCartService.clearCartitems();
    return order;
   }
+
+  getOrders(){
+    //return this.db.list('/orders').snapshotChanges();
+    return this.db.list('/orders').valueChanges();
+  }
+  getOrdersByUserid(){
+
+  }
   
 }

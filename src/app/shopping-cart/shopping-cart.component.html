@@ -12,7 +12,7 @@
           <th>quantity</th>
           <th>Unit price</th>
           <th>Total price</th>
-          <th>Action</th>
+         <!-- <th>Action</th>-->
         </tr>
       </thead>
       <tbody>
@@ -24,14 +24,14 @@
 
          <!--<td>{{item.quantity}} </td>-->
           
-         <td>
+          <td>
           <product-quantity [product]="item.product" [shopping-cart] ="cart"></product-quantity>
-        </td>
+          </td>
           
 
           <td>{{item.product.price}} </td>
           <td>{{item.quantity * item.product.price}}</td>
-          <td> <button (click) = "removefromcart()" type="button" class="btn btn-link">Remove</button></td>
+          <!--<td> <button (click) = "removefromcart()" type="button" class="btn btn-link">Remove</button></td>-->
         </tr>
       </tbody>
       <tfoot>
