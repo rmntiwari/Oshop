@@ -6,11 +6,11 @@
 
 <div class="row">
 
-  <div class="col-3"> <!-- catetory display area -->    
+  <div class="col-md-3"> <!-- catetory display area -->    
     <app-product-filter [category] = "category"></app-product-filter>
   </div>
 
-  <div class="col"> <!-- product display area -->
+  <div class="col-md-9"> <!-- product display area -->
   <div class="row" *ngIf="cart$ | async as cart">
   
   

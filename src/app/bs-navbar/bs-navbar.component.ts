@@ -6,7 +6,6 @@ import { Observable } from 'rxjs'
 import { ShoppingCart } from '../models/shopping-cart';
  
  
- 
 
 @Component({
   selector: 'bs-navbar',
@@ -17,8 +16,7 @@ export class BsNavbarComponent  implements OnInit {
 
   appUser: AppUser;
   shoppingCartItemCount: number;  
-   
-
+  collapsed = true;
   constructor(private auth:AuthService, private ShopingCartService : ShopingCartService) {      
 
   } 
@@ -41,6 +39,10 @@ export class BsNavbarComponent  implements OnInit {
 
   logout(){       
        this.auth.logout();
+  }
+  toggleCollapsed(){
+    this.collapsed = !this.collapsed;
+    console.log(this.collapsed);
   }
 
 }

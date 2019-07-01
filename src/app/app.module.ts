@@ -43,6 +43,8 @@ import { ProductFilterComponent } from './products/product-filter/product-filter
 import { ProductCardComponent } from './product-card/product-card.component';
 import { ShopingCartService } from './services/shoping-cart.service';
 import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
+import { OrderService } from './services/order.service';
+import { ShoppingCartSummeryComponent } from './shopping-cart-summery/shopping-cart-summery.component';
 
 const routes:Routes = [
 {path:'', redirectTo:'home',pathMatch:'full'},
@@ -53,7 +55,7 @@ const routes:Routes = [
 {path:'product', component:ProductsComponent},
 {path:'shopping-cart', component:ShoppingCartComponent},
 {path:'checkout', component:CheckOutComponent, canActivate:[AuthGuard]},
-{path:'order-success', component:OrderSuccessComponent,canActivate:[AuthGuard]},
+{path:'order-success/:id', component:OrderSuccessComponent,canActivate:[AuthGuard]},
 {path:'my/orders', component:MyOrdersComponent},
  
 //routing from more specific to more generalized
@@ -85,7 +87,8 @@ const routes:Routes = [
     ProductFormComponent,
     ProductFilterComponent,
     ProductCardComponent,
-    ProductQuantityComponent 
+    ProductQuantityComponent,
+    ShoppingCartSummeryComponent 
   ],
   imports: [
     BrowserModule,
@@ -102,7 +105,8 @@ const routes:Routes = [
    
     
   ],
-  providers: [ AuthService,AuthGuard,UserService,AdminAuthGuard,CategoryService, ProductService,ShopingCartService],
+  providers: [ AuthService,AuthGuard,UserService,AdminAuthGuard,
+    CategoryService, ProductService,ShopingCartService,OrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

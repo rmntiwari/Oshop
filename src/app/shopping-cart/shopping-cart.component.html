@@ -1,8 +1,8 @@
   <h3>Shopping cart</h3>
   <ng-container *ngIf="cart$ | async as cart" >
-    <p> You have {{cart.totalItemsCount }}  items in your cart</p>
-    <p>{{cart.items | json}}</p>
-    <p>{{cart | json}}</p>
+    <p> You have {{cart.totalItemsCount }}  items in your cart 
+      <button class="btn btn-secondary" (click)="clearCart()" >Clear Cart</button></p>
+  
     <table class="table">
       <thead>
         <tr>
@@ -46,6 +46,8 @@
         </tr>
       </tfoot>
     </table>
+    
+    <button class="btn btn-success" routerLink="/checkout">Checkout</button>
   </ng-container> 
 
  

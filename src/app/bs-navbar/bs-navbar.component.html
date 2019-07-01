@@ -1,11 +1,13 @@
 <nav class="navbar navbar-expand-md navbar-light fixed-light bg-light">
   <a class="navbar-brand" routerLink="/">Os</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-    aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation" 
+    (click)="toggleCollapsed()">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault" 
+  [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}">
     <ul class="navbar-nav mr-auto">
        
       <li class="nav-item">
@@ -22,9 +24,8 @@
         <li class="nav-item"   >
           <a class="nav-link"  routerLink="login">Login</a>
         </li>
-      </ng-template>     
-       
-       <!---<li ngbDropdown class="nav-item dropdown" *ngIf="auth.user$ | async as user; else anonymususer"> -->
+      </ng-template> 
+
        <li ngbDropdown class="nav-item dropdown" *ngIf="appUser; else anonymususer"> 
         <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{appUser.name}}</a>
         <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
