@@ -65,7 +65,10 @@ export class ShopingCartService {
   }
 
   async clearCartitems(){
+<<<<<<< HEAD
     console.log("going to clear cart---after placing order");
+=======
+>>>>>>> 32e8694d3bd304f15e29593fad6d0585df51fc5b
     let cartid = await this.getOrCreateCart();     
     this.db.object('/shopping-carts/'+ cartid +'/items').remove();
   }
