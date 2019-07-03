@@ -46,6 +46,7 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
 import { OrderService } from './services/order.service';
   
 import { ShoppingCartSummeryComponent } from './shopping-cart-summery/shopping-cart-summery.component';
+import { OrderdetailsComponent } from './admin/orderdetails/orderdetails.component';
   
   
 
@@ -65,10 +66,11 @@ const routes:Routes = [
 {path:'admin/products/new', component:ProductFormComponent, canActivate:[AuthGuard, AdminAuthGuard] },
 {path:'admin/products/:id', component:ProductFormComponent, canActivate:[AuthGuard, AdminAuthGuard] },
 {path:'admin/products', component:AdminProductsComponent, canActivate:[AuthGuard, AdminAuthGuard] },
-
-
+{path:'admin/orders/:id', component:OrderdetailsComponent, canActivate:[AuthGuard,AdminAuthGuard]},
 {path:'admin/orders', component:AdminOrderComponent, canActivate:[AuthGuard,AdminAuthGuard]}, 
-{ path: '**', component:PagenotfoundComponent }
+ 
+
+{ path: '**', component:PagenotfoundComponent } 
 
 ];
 
@@ -91,7 +93,8 @@ const routes:Routes = [
     ProductFilterComponent,
     ProductCardComponent,
     ProductQuantityComponent,
-    ShoppingCartSummeryComponent 
+    ShoppingCartSummeryComponent,
+    OrderdetailsComponent 
   ],
   imports: [
     BrowserModule,

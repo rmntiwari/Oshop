@@ -20,7 +20,7 @@ export class OrderService {
 
   getOrders(){
     //return this.db.list('/orders').snapshotChanges();
-    return this.db.list('/orders').valueChanges();
+     return this.db.list('/orders').valueChanges();
   }
   getOrdersByUserid(){
 

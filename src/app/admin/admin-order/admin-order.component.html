@@ -7,15 +7,12 @@
         <th scope="col">View</th>
       </tr>
     </thead>
-    <tbody>
-     
-      <tr *ngFor ="let order of orders$ | async; index as i " >
-       
+    <tbody>        
+      <tr *ngFor ="let order of orders$ | async; index as i " >      
         <th scope="row">{{i+1}}</th>
-        <td>{{order.userId}}</td>
-        <td>{{order.datePlaced}}</td>
+        <td>{{order.shippingAddress.name}}</td>
+        <td>{{order.datePlaced | date}}</td>
         <td><a [routerLink]= "['/admin/orders/',order.userId]" >View</a></td>
-      </tr>
-      
+      </tr>      
     </tbody>
   </table>
